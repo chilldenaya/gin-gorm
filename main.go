@@ -1,7 +1,7 @@
 package main
 
 import (
-	r "gin-gorm/routers"
+	r "gin-gorm/routes"
 )
 
 func main() {
