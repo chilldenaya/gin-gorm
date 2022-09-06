@@ -9,15 +9,15 @@ import (
 )
 
 type routes struct {
-	router *gin.Engine
+	Router *gin.Engine
 }
 
 func InitRoutes() routes {
 	r := routes{
-		router: gin.Default(),
+		Router: gin.Default(),
 	}
 
-	v1 := r.router.Group("/api/v1")
+	v1 := r.Router.Group("/api/v1")
 	r.RegisterStudentRoutes(v1)
 	r.RegisterClassRoutes(v1)
 
@@ -28,7 +28,7 @@ func InitRoutes() routes {
 }
 
 func (r routes) Run(addr ...string) error {
-	return r.router.Run()
+	return r.Router.Run()
 }
 
 func ping(c *gin.Context) {
