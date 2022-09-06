@@ -1,10 +1,6 @@
 package routers
 
 import (
-	"net/http"
-
-	res "gin-gorm/internals"
-
 	"github.com/gin-gonic/gin"
 )
 
@@ -22,16 +18,10 @@ func InitRoutes() routes {
 	r.RegisterClassRoutes(v1)
 	r.RegisterHealthcheckRoutes(v1)
 
-	v1.GET("/ping", ping)
-
 	return r
 
 }
 
 func (r routes) Run(addr ...string) error {
 	return r.Router.Run()
-}
-
-func ping(c *gin.Context) {
-	c.JSON(http.StatusOK, res.SetOk("pong"))
 }
