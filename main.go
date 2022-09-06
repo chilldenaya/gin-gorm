@@ -1,10 +1,12 @@
 package main
 
 import (
+	m "gin-gorm/models"
 	r "gin-gorm/routes"
 )
 
 func main() {
-	router := r.InitRoutes()
-	router.Run(":8080")
+	m.InitDBConnection()
+
+	r.InitRoutes().Run(":8080")
 }

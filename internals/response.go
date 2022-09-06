@@ -8,3 +8,10 @@ func SetOk(data interface{}) gin.H {
 		"message": "success",
 	}
 }
+
+func SetErr(message string) gin.H {
+	return gin.H{
+		"data":    nil,
+		"message": message,
+	}
+}

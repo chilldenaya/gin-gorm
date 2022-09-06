@@ -1,26 +1,38 @@
 package models
 
 type Class struct {
-	Name string `json:"name"`
-	Code string `json:"code"`
+	ID   uint `gorm:"primarykey"`
+	Name string
+	Code string
 }
 
-func GetClasses() []Class {
-	return []Class{
-		{
-			Name: "Calculus 1",
-			Code: "CA100",
-		},
-		{
-			Name: "Linear Algebra",
-			Code: "CA101",
-		},
+func GetClasses() ([]Class, error) {
+	var classes []Class
+
+	err := db.Find(&classes).Error
+	if err != nil {
+		return nil, err
 	}
+
+	return classes, nil
 }
 
-func GetClassById(id string) Class {
-	return Class{
-		Name: "Calculus 1",
-		Code: "CA100",
+func GetClassById(id int) (Class, error) {
+	var class Class
+
+	err := db.First(&class, id).Error
+	if err != nil {
+		return class, err
 	}
+
+	return class, nil
+}
+
+func CreateClass(class Class) (Class, error) {
+	err := db.Create(&class).Error
+	if err != nil {
+		return class, err
+	}
+
+	return class, nil
 }
