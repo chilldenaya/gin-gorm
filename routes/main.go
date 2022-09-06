@@ -20,6 +20,7 @@ func InitRoutes() routes {
 	v1 := r.Router.Group("/api/v1")
 	r.RegisterStudentRoutes(v1)
 	r.RegisterClassRoutes(v1)
+	r.RegisterHealthcheckRoutes(v1)
 
 	v1.GET("/ping", ping)
 
