@@ -16,9 +16,9 @@ func (r routes) RegisterHealthcheckRoutes(rg *gin.RouterGroup) {
 }
 
 func GetAppHeartbeat(c *gin.Context) {
-	c.JSON(http.StatusOK, res.SetOk(nil))
+	c.JSON(http.StatusOK, res.SetOk("App is up!"))
 }
 
 func GetDBHeartbeat(c *gin.Context) {
-	c.JSON(http.StatusOK, res.SetOk(nil))
+	c.JSON(http.StatusOK, res.SetOk("DB is up!"))
 }
