@@ -5,7 +5,7 @@ import (
 	"strconv"
 
 	dto "gin-gorm/dto"
-	res "gin-gorm/internals"
+	res "gin-gorm/helpers"
 	s "gin-gorm/services"
 
 	"github.com/gin-gonic/gin"

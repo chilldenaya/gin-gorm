@@ -3,7 +3,7 @@ package routers
 import (
 	"net/http"
 
-	res "gin-gorm/internals"
+	res "gin-gorm/helpers"
 
 	"github.com/gin-gonic/gin"
 )

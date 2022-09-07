@@ -1,7 +1,7 @@
 package services
 
 import (
-	res "gin-gorm/internals"
+	res "gin-gorm/helpers"
 	m "gin-gorm/models"
 )
 
