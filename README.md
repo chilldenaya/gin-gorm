@@ -6,10 +6,10 @@ A [golang](https://go.dev/) web server built with [gin](https://gin-gonic.com/) 
 
 ```
 # Clone this project 
-$ https://github.com/chilldenaya/gin-gorm.git
+https://github.com/chilldenaya/gin-gorm.git
 
 # Run locally
-$ make run-dev
+make run-dev
 ```
 
 ## Structure
