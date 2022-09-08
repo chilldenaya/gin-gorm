@@ -2,7 +2,11 @@ module gin-gorm
 
 go 1.18
 
-require github.com/gin-gonic/gin v1.8.1
+require (
+	github.com/gin-gonic/gin v1.8.1
+	gorm.io/driver/sqlite v1.3.6
+	gorm.io/gorm v1.23.8
+)
 
 require (
 	github.com/gin-contrib/sse v0.1.0 // indirect
@@ -26,6 +30,4 @@ require (
 	golang.org/x/text v0.3.6 // indirect
 	google.golang.org/protobuf v1.28.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
-	gorm.io/driver/sqlite v1.3.6 // indirect
-	gorm.io/gorm v1.23.8 // indirect
 )
