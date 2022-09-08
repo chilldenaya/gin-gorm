@@ -8,10 +8,12 @@ import (
 )
 
 func GetClassesService() (map[string]any, error) {
-	result, err := m.GetClasses()
+	resultObj, err := m.GetClasses()
 	if err != nil {
 		return res.SetErr(err.Error()), err
 	}
+
+	result := dto.BuildGetClassesResponse(resultObj)
 
 	return res.SetOk(result), nil
 }
