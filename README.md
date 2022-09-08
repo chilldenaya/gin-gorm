@@ -12,20 +12,18 @@ https://github.com/chilldenaya/gin-gorm.git
 make run-dev
 ```
 
-## Structure
+## Main Structure
 ```
 ├── routes
-│   └── student.go // student routes
+│   └── student.go // student routes and controller callers
 │   └── main.go // routes initiator
-├── services
-│   └── student.go // student service or controller
+├── controllers
+│   └── student.go // student controllers
 ├── models
 │   ├── student.go // student model
 │   ├── db.go // db initiator
 ├── dto
-│   ├── student.go // student data transfer object
-├── helpers
-│   └── response.go
+│   ├── student.go // student data transfer object (request and response)
 └── main.go
 ```
 
