@@ -62,5 +62,5 @@ func CreateClassRoute(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, data)
+	c.JSON(http.StatusCreated, data)
 }
