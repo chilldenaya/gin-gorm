@@ -23,12 +23,12 @@ func (r routes) RegisterClassRoutes(rg *gin.RouterGroup) {
 func GetClassesRoute(c *gin.Context) {
 	data, err := controllers.GetClasses()
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, data)
+		c.JSON(http.StatusInternalServerError, res.SetErr(err.Error()))
 
 		return
 	}
 
-	c.JSON(http.StatusOK, data)
+	c.JSON(http.StatusOK, res.SetOk(data))
 }
 
 func GetClassByIdRoute(c *gin.Context) {
@@ -44,7 +44,7 @@ func GetClassByIdRoute(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, data)
+	c.JSON(http.StatusOK, res.SetOk(data))
 }
 
 func CreateClassRoute(c *gin.Context) {
@@ -62,5 +62,5 @@ func CreateClassRoute(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusCreated, data)
+	c.JSON(http.StatusCreated, res.SetOk(data))
 }
