@@ -1,3 +1,6 @@
 run-dev:
-	clear && go build && ./gin-gorm
+	clear && \
+	. scripts/env.sh && \
+	go build && \
+	./gin-gorm
 	
