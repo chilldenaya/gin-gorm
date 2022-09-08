@@ -4,9 +4,9 @@ import (
 	"net/http"
 	"strconv"
 
+	"gin-gorm/controllers"
 	dto "gin-gorm/dto"
 	res "gin-gorm/helpers"
-	s "gin-gorm/services"
 
 	"github.com/gin-gonic/gin"
 )
@@ -21,7 +21,7 @@ func (r routes) RegisterClassRoutes(rg *gin.RouterGroup) {
 }
 
 func GetClassesRoute(c *gin.Context) {
-	data, err := s.GetClassesService()
+	data, err := controllers.GetClasses()
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, data)
 
@@ -37,7 +37,7 @@ func GetClassByIdRoute(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, res.SetErr(err.Error()))
 	}
 
-	data, err := s.GetClassByIdService(id)
+	data, err := controllers.GetClassById(id)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, res.SetErr(err.Error()))
 
@@ -55,7 +55,7 @@ func CreateClassRoute(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, res.SetErr(err.Error()))
 	}
 
-	data, err := s.CreateClassService(req)
+	data, err := controllers.CreateClass(req)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, res.SetErr(err.Error()))
 

@@ -1,4 +1,4 @@
-package services
+package controllers
 
 import (
 	"gin-gorm/dto"
@@ -6,7 +6,7 @@ import (
 	m "gin-gorm/models"
 )
 
-func GetClassesService() (map[string]any, error) {
+func GetClasses() (map[string]any, error) {
 	resultObj, err := m.GetClasses()
 	if err != nil {
 		return res.SetErr(err.Error()), err
@@ -17,7 +17,7 @@ func GetClassesService() (map[string]any, error) {
 	return res.SetOk(result), nil
 }
 
-func GetClassByIdService(id int) (map[string]any, error) {
+func GetClassById(id int) (map[string]any, error) {
 	resultObj, err := m.GetClassById(id)
 	if err != nil {
 		return res.SetErr(err.Error()), err
@@ -28,7 +28,7 @@ func GetClassByIdService(id int) (map[string]any, error) {
 	return res.SetOk(result), nil
 }
 
-func CreateClassService(
+func CreateClass(
 	req dto.CreateClassRequest,
 ) (map[string]any, error) {
 	classObj := m.Class{
