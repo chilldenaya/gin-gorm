@@ -39,7 +39,7 @@ func GetClassByIdRoute(c *gin.Context) {
 
 	data, err := controllers.GetClassById(id)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, res.SetErr(err.Error()))
+		c.JSON(http.StatusNotFound, res.SetErr(err.Error()))
 
 		return
 	}
