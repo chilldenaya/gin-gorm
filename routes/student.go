@@ -2,8 +2,11 @@ package routers
 
 import (
 	"net/http"
+	"strconv"
 
-	s "gin-gorm/controllers"
+	"gin-gorm/controllers"
+	dto "gin-gorm/dto"
+	res "gin-gorm/helpers"
 
 	"github.com/gin-gonic/gin"
 )
@@ -13,14 +16,67 @@ func (r routes) RegisterStudentRoutes(rg *gin.RouterGroup) {
 
 	route.GET("/", GetStudentsRoute)
 	route.GET("/:id", GetStudentByIdRoute)
+	route.POST("/", CreateStudentRoute)
+	route.DELETE("/:id", DeleteStudentByIdRoute)
 }
 
 func GetStudentsRoute(c *gin.Context) {
-	c.JSON(http.StatusOK, s.GetStudentsController())
+	data, err := controllers.GetStudents()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, res.SetErr(err.Error()))
+
+		return
+	}
+
+	c.JSON(http.StatusOK, res.SetOk(data))
 }
 
 func GetStudentByIdRoute(c *gin.Context) {
-	id := c.Param("id")
+	id, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, res.SetErr(err.Error()))
+	}
 
-	c.JSON(http.StatusOK, s.GetStudentByIdController(id))
+	data, err := controllers.GetStudentById(id)
+	if err != nil {
+		c.JSON(http.StatusNotFound, res.SetErr(err.Error()))
+
+		return
+	}
+
+	c.JSON(http.StatusOK, res.SetOk(data))
+}
+
+func CreateStudentRoute(c *gin.Context) {
+	var req dto.CreateStudentRequest
+
+	err := c.BindJSON(&req)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, res.SetErr(err.Error()))
+	}
+
+	data, err := controllers.CreateStudent(req)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, res.SetErr(err.Error()))
+
+		return
+	}
+
+	c.JSON(http.StatusCreated, res.SetOk(data))
+}
+
+func DeleteStudentByIdRoute(c *gin.Context) {
+	id, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, res.SetErr(err.Error()))
+	}
+
+	err = controllers.DeleteStudentById(id)
+	if err != nil {
+		c.JSON(http.StatusNotFound, res.SetErr(err.Error()))
+
+		return
+	}
+
+	c.JSON(http.StatusOK, res.SetOk(gin.H{}))
 }

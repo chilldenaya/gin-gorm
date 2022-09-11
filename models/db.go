@@ -18,5 +18,6 @@ func InitDBConnection() {
 
 	db = dbSession
 	db.AutoMigrate(&Class{})
+	db.AutoMigrate(&Student{})
 
 }
