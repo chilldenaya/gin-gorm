@@ -43,3 +43,12 @@ func CreateClass(
 
 	return result, nil
 }
+
+func DeleteClassById(id int) error {
+	err := m.DeleteClassById(id)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}

@@ -16,8 +16,8 @@ func (r routes) RegisterClassRoutes(rg *gin.RouterGroup) {
 
 	route.GET("/", GetClassesRoute)
 	route.GET("/:id", GetClassByIdRoute)
-
 	route.POST("/", CreateClassRoute)
+	route.DELETE("/:id", DeleteClassByIdRoute)
 }
 
 func GetClassesRoute(c *gin.Context) {
@@ -63,4 +63,20 @@ func CreateClassRoute(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusCreated, res.SetOk(data))
+}
+
+func DeleteClassByIdRoute(c *gin.Context) {
+	id, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, res.SetErr(err.Error()))
+	}
+
+	err = controllers.DeleteClassById(id)
+	if err != nil {
+		c.JSON(http.StatusNotFound, res.SetErr(err.Error()))
+
+		return
+	}
+
+	c.JSON(http.StatusOK, res.SetOk(gin.H{}))
 }

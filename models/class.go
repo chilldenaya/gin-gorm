@@ -36,3 +36,12 @@ func CreateClass(class Class) (Class, error) {
 
 	return class, nil
 }
+
+func DeleteClassById(id int) error {
+	err := db.Delete(&Class{}, id).Error
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
