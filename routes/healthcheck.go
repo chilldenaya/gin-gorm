@@ -3,6 +3,7 @@ package routers
 import (
 	"net/http"
 
+	"gin-gorm/controllers"
 	res "gin-gorm/helpers"
 
 	"github.com/gin-gonic/gin"
@@ -20,5 +21,12 @@ func GetAppHeartbeat(c *gin.Context) {
 }
 
 func GetDBHeartbeat(c *gin.Context) {
+	err := controllers.GetDBHeartbeatController()
+	if err != nil {
+		c.JSON(http.StatusNotFound, res.SetErr(err.Error()))
+
+		return
+	}
+
 	c.JSON(http.StatusOK, res.SetOk("DB is up!"))
 }
